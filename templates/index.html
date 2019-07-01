@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>TODOリスト</title>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+</head>
+<body>
+
+<form action="/todo/new" method="POST">
+    新規追加：<input type="text" name="text" value="">
+    <select name="status" id="">
+        <option value="1">未対応</option>
+        <option value="2">対応中</option>
+        <option value="3">完了</option>
+    </select>
+    <input type="submit" value="送信">
+</form>
+
+<br>
+
+<table>
+    <form method="post" id="frmDelete">
+        <tr>
+            <td>TODO</td>
+            <td>ステータス</td>
+        </tr>
+        {{range .todos}}
+            <tr>
+                <td>{{.Text}}</td>
+                <td>
+                    {{if eq .Status 1}}
+                    未着手
+                    {{else if eq .Status 2}}
+                    対応中
+                    {{else if eq .Status 3}}
+                    完了
+                    {{end}}
+                </td>
+                <td><a href="/todo/{{.ID}}">編集</a></td>
+                <td><a href="javascript:void(0);" data-id="{{.ID}}" class="delete">削除</a></td>
+            </tr>
+        {{end}}
+    </form>
+</table>
+
+<script>
+    $(function(){
+        $('.delete').on('click', function(){
+            $('#frmDelete').attr('action', '/todo/delete/' + $(this).data('id'))
+            $('#frmDelete').submit()
+        })
+    })
+</script>
+
+</body>
+</html>

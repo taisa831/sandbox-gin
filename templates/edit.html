@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>TODOリスト 編集</title>
+</head>
+<body>
+<form action="/todo/edit/{{.todo.ID}}" method="POST">
+    テキスト<input type="text" name="text" value="{{.todo.Text}}"><br>
+    <select name="status" id="">
+        <option value="1" {{if eq .todo.Status 1}}selected{{end}}>未対応</option>
+        <option value="2" {{if eq .todo.Status 2}}selected{{end}}>対応中</option>
+        <option value="3" {{if eq .todo.Status 3}}selected{{end}}>完了</option>
+    </select>
+    <input type="submit" value="更新">
+</form>
+</body>
+</html>
