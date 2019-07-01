@@ -22,6 +22,8 @@ func main() {
   defer db.Close()
   db.LogMode(true)
 
+  db.AutoMigrate(&Todo{})
+
   r := gin.Default()
   r.LoadHTMLGlob("templates/*")
 
