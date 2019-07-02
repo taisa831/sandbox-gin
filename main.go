@@ -27,6 +27,7 @@ func main() {
   r := gin.Default()
   r.LoadHTMLGlob("templates/*")
 
+  // 一覧画面
   r.GET("/todo", func(c *gin.Context) {
     var todos []Todo
     db.Find(&todos)
@@ -36,7 +37,8 @@ func main() {
     })
   })
 
-  r.POST("/todo/new", func(c *gin.Context) {
+  // 新規作成
+  r.POST("/todo", func(c *gin.Context) {
     text, _ := c.GetPostForm("text")
     status, _ := c.GetPostForm("status")
     istatus, _ := strconv.ParseUint(status, 10, 32)
@@ -45,6 +47,7 @@ func main() {
     c.Redirect(http.StatusMovedPermanently, "/todo")
   })
 
+  // 編集画面
   r.GET("/todo/:id", func(c *gin.Context) {
     todo := Todo{}
     id := c.Param("id")
@@ -54,6 +57,7 @@ func main() {
     })
   })
 
+  // 編集
   r.POST("/todo/edit/:id", func(c *gin.Context) {
     todo := Todo{}
     id := c.Param("id")
@@ -68,6 +72,7 @@ func main() {
     c.Redirect(http.StatusMovedPermanently, "/todo")
   })
 
+  // 削除
   r.POST("/todo/delete/:id", func(c *gin.Context) {
     todo := Todo{}
     id := c.Param("id")
