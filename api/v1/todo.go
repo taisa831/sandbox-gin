@@ -77,7 +77,7 @@ func (h *TodoHandler) DeleteTask(c *gin.Context) {
 
   err := h.Db.First(&todo, id).Error
   if err != nil {
-    c.AbortWithStatus(http.StatusNotFound)
+    c.AbortWithStatus(http.StatusBadRequest)
     return
   }
 
