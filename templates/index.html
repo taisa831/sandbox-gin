@@ -47,7 +47,7 @@
 <script>
     $(function(){
         $('.delete').on('click', function(){
-            $('#frmDelete').attr('action', '/todo/delete/' + $(this).data('id'))
+            $('#frmDelete').attr('action', '/go/todo/delete/' + $(this).data('id'))
             $('#frmDelete').submit()
         })
     })
