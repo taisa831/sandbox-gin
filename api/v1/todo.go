@@ -13,7 +13,7 @@ type TodoHandler struct {
 
 func (h *TodoHandler) GetAll(c *gin.Context) {
 
-  accessControll(c)
+  accessControl(c)
 
   var todos []models.Todo
   h.Db.Find(&todos)
@@ -22,7 +22,7 @@ func (h *TodoHandler) GetAll(c *gin.Context) {
 
 func (h *TodoHandler) CreateTask(c *gin.Context) {
 
-  accessControll(c)
+  accessControl(c)
 
   todo := models.Todo{}
 
@@ -40,7 +40,7 @@ func (h *TodoHandler) CreateTask(c *gin.Context) {
 
 func (h *TodoHandler) EditTask(c *gin.Context) {
 
-  accessControll(c)
+  accessControl(c)
 
   todo := models.Todo{}
   id := c.Param("id")
@@ -50,7 +50,7 @@ func (h *TodoHandler) EditTask(c *gin.Context) {
 
 func (h *TodoHandler) UpdateTask(c *gin.Context) {
 
-  accessControll(c)
+  accessControl(c)
 
   todo := models.Todo{}
   id := c.Param("id")
@@ -69,7 +69,7 @@ func (h *TodoHandler) UpdateTask(c *gin.Context) {
 
 func (h *TodoHandler) DeleteTask(c *gin.Context) {
 
-  accessControll(c)
+  accessControl(c)
 
   todo := models.Todo{}
   id := c.Param("id")
@@ -87,9 +87,22 @@ func (h *TodoHandler) DeleteTask(c *gin.Context) {
   })
 }
 
-func accessControll(c *gin.Context) {
-  c.Header("Access-Control-Allow-Origin", "*")
-  c.Header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
-  c.Header("Access-Control-Max-Age", "86400")
-  c.Header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+func accessControl(c *gin.Context) {
+
+  if c.Request.Method == "OPTIONS" {
+    headers := c.Request.Header.Get("Access-Control-Request-Headers")
+
+    c.Writer.Header().Set("Access-Control-Allow-Origin", "*")
+    c.Writer.Header().Set("Access-Control-Allow-Methods", "GET,HEAD,PUT,PATCH,POST,DELETE")
+    c.Writer.Header().Set("Access-Control-Allow-Headers", headers)
+
+    c.Data(200, "text/plain", []byte{})
+    c.Abort()
+  } else {
+    c.Header("Access-Control-Allow-Origin", "*")
+    c.Header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+    c.Header("Access-Control-Max-Age", "86400")
+    c.Header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
+  }
+
 }
