@@ -32,8 +32,8 @@ func Router(dbConn *gorm.DB) {
     apiV1.GET("/todo", apiTodoHandler.GetAll)
     apiV1.POST("/todo", apiTodoHandler.CreateTask)
     apiV1.GET("/todo/:id", apiTodoHandler.EditTask)
-    apiV1.PUT("/todo/:id", apiTodoHandler.UpdateTask)
-    apiV1.POST("/todo/:id", apiTodoHandler.DeleteTask)
+    apiV1.POST("/todo/edit/:id", apiTodoHandler.UpdateTask)
+    apiV1.POST("/todo/delete/:id", apiTodoHandler.DeleteTask)
   }
 
   r.Run(":9000")
