@@ -14,6 +14,7 @@ func Router(dbConn *gorm.DB) {
   }
 
   r := gin.Default()
+
   r.LoadHTMLGlob("templates/*")
 
   r.GET("/todo", todoHandler.GetAll) // 一覧画面

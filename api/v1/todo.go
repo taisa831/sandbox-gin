@@ -12,12 +12,18 @@ type TodoHandler struct {
 }
 
 func (h *TodoHandler) GetAll(c *gin.Context) {
+
+  accessControll(c)
+
   var todos []models.Todo
   h.Db.Find(&todos)
   c.JSON(http.StatusOK, todos)
 }
 
 func (h *TodoHandler) CreateTask(c *gin.Context) {
+
+  accessControll(c)
+
   todo := models.Todo{}
 
   err := c.BindJSON(&todo)
@@ -33,6 +39,9 @@ func (h *TodoHandler) CreateTask(c *gin.Context) {
 }
 
 func (h *TodoHandler) EditTask(c *gin.Context) {
+
+  accessControll(c)
+
   todo := models.Todo{}
   id := c.Param("id")
   h.Db.First(&todo, id)
@@ -40,6 +49,9 @@ func (h *TodoHandler) EditTask(c *gin.Context) {
 }
 
 func (h *TodoHandler) UpdateTask(c *gin.Context) {
+
+  accessControll(c)
+
   todo := models.Todo{}
   id := c.Param("id")
   h.Db.First(&todo, id)
@@ -56,6 +68,9 @@ func (h *TodoHandler) UpdateTask(c *gin.Context) {
 }
 
 func (h *TodoHandler) DeleteTask(c *gin.Context) {
+
+  accessControll(c)
+
   todo := models.Todo{}
   id := c.Param("id")
   h.Db.First(&todo, id)
@@ -70,4 +85,11 @@ func (h *TodoHandler) DeleteTask(c *gin.Context) {
   c.JSON(http.StatusOK, gin.H{
     "status": "ok",
   })
+}
+
+func accessControll(c *gin.Context) {
+  c.Header("Access-Control-Allow-Origin", "*")
+  c.Header("Access-Control-Allow-Methods", "POST, GET, OPTIONS, PUT, DELETE")
+  c.Header("Access-Control-Max-Age", "86400")
+  c.Header("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Content-Type, Content-Length, Accept-Encoding, X-CSRF-Token, Authorization")
 }

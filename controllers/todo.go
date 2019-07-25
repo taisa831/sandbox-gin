@@ -13,6 +13,7 @@ type TodoHandler struct {
 }
 
 func (h *TodoHandler) GetAll(c *gin.Context) {
+
   var todos []models.Todo
   h.Db.Find(&todos)
 
