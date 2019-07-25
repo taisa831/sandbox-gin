@@ -5,7 +5,7 @@
     <title>TODOリスト 編集</title>
 </head>
 <body>
-<form action="/todo/edit/{{.todo.ID}}" method="POST">
+<form action="/go/todo/edit/{{.todo.ID}}" method="POST">
     テキスト<input type="text" name="text" value="{{.todo.Text}}"><br>
     <select name="status" id="">
         <option value="1" {{if eq .todo.Status 1}}selected{{end}}>未対応</option>
