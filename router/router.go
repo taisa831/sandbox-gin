@@ -4,8 +4,8 @@ import (
   "github.com/gin-contrib/cors"
   "github.com/gin-gonic/gin"
   "github.com/jinzhu/gorm"
-  v1 "github.com/taisa831/gin-sandbox/api/v1"
-  "github.com/taisa831/gin-sandbox/controllers"
+  v1 "github.com/taisa831/sandbox-gin/api/v1"
+  "github.com/taisa831/sandbox-gin/controllers"
   "time"
 )
 

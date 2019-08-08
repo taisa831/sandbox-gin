@@ -3,7 +3,7 @@ package db
 import (
   "github.com/jinzhu/gorm"
   _ "github.com/jinzhu/gorm/dialects/mysql"
-  "github.com/taisa831/gin-sandbox/models"
+  "github.com/taisa831/sandbox-gin/models"
 )
 
 func Init() *gorm.DB {

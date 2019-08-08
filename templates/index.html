@@ -7,7 +7,7 @@
 </head>
 <body>
 
-<form action="/go/todo" method="POST">
+<form action="/todo" method="POST">
     新規追加：<input type="text" name="text" value="">
     <select name="status" id="">
         <option value="1">未対応</option>
@@ -37,7 +37,7 @@
                     完了
                     {{end}}
                 </td>
-                <td><a href="/go/todo/{{.ID}}">編集</a></td>
+                <td><a href="/todo/{{.ID}}">編集</a></td>
                 <td><a href="javascript:void(0);" data-id="{{.ID}}" class="delete">削除</a></td>
             </tr>
         {{end}}
@@ -47,7 +47,7 @@
 <script>
     $(function(){
         $('.delete').on('click', function(){
-            $('#frmDelete').attr('action', '/go/todo/delete/' + $(this).data('id'))
+            $('#frmDelete').attr('action', '/todo/delete/' + $(this).data('id'))
             $('#frmDelete').submit()
         })
     })

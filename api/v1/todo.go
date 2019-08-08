@@ -3,7 +3,7 @@ package v1
 import (
   "github.com/gin-gonic/gin"
   "github.com/jinzhu/gorm"
-  "github.com/taisa831/gin-sandbox/models"
+  "github.com/taisa831/sandbox-gin/models"
   "net/http"
 )
 

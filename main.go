@@ -1,8 +1,8 @@
 package main
 
 import (
-  "github.com/taisa831/gin-sandbox/db"
-  "github.com/taisa831/gin-sandbox/router"
+  "github.com/taisa831/sandbox-gin/db"
+  "github.com/taisa831/sandbox-gin/router"
 )
 
 func main() {
