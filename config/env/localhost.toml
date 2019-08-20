@@ -1,0 +1,6 @@
+[database]
+user = "root"
+host = "127.0.0.1"
+password = "changeme"
+port = 3306
+name = "sandbox_gin"
