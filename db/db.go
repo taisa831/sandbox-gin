@@ -27,7 +27,7 @@ func Init() *gorm.DB {
     panic("データベースへの接続に失敗しました")
   }
   db.LogMode(true)
-  db.AutoMigrate(&models.Todo{}, &models.Todo{})
+  db.AutoMigrate(&models.Todo{}, &models.User{})
 
   return db
 }
